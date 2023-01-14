@@ -19,7 +19,24 @@ function insertionSort(arr) {
   */
 
   // Your code here
+  let sorted = []
+  let copy = arr.slice()
+
+  while(copy.length !== 0){
+    console.log(sorted.join(','))
+    let value = copy.pop()
+    // copy[copy.length - 1] = null  // this prevents the whole code from working as stated in the pseudocode. stressed me out for an hour
+    sorted.push(value)
+    for(let i = sorted.length - 1; i >= 0; i--){
+      if(sorted[i - 1] && sorted[i - 1] > sorted[i]){
+        sorted[i] = sorted[i - 1]
+        sorted[i - 1] =  value
+      }
+    }
+  }
+  return sorted
 }
+
 
 // In-place Insertion Sort
 // Mutates the original array
@@ -41,6 +58,20 @@ function insertionSortInPlace(arr) {
   */
 
   // Your code here
+
+  let divisor = 1
+  while(((arr.length) - divisor) !== 0){
+    console.log(arr.join(','))
+    let value = arr[divisor]
+    for(let i  = divisor; i >= 0; i--){
+      if(arr[i - 1] && arr[i - 1] > arr[i]){
+        arr[i] = arr[i - 1]
+        arr[i - 1] =  value
+      }
+    }
+    divisor++
+  }
+  return arr
 }
 
 module.exports = [insertionSort, insertionSortInPlace];
